@@ -6,8 +6,8 @@
         public int UserId { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal Discount { get; set; }
-        public int Qunatity { get; set; }
+        public int Quantity { get; set; }
         public decimal TotalPrice { get; set; }
-        public List<Cart> listCart { get; set; }
+        public int MedicineID { get; set; }
     }
 }

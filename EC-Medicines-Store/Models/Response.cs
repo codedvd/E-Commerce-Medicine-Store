@@ -11,7 +11,7 @@ namespace EC_Medicines_Store.Models
         public List<Users> listUsers { get; set; }
         public Users user { get; set; }
         public List<Medicines> listMedicines { get; set; }
-        public Medicines medicines { get; set; }
+        public Medicines medicine { get; set; }
         public List<Cart> listCart { get; set; }
 
         public List<Orders> listOrders { get; set; }

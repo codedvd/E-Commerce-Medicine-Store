@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3rhw0cgjd6jAMBuMFQDK12yx9FGO0TNbmiGxbrO9fjxRM70UocoCfYeM6+pCcVwGruHUpgqEHFIxvnvBsHblOw==",
+  "dgSpecHash": "eZ8EtqVrlNjGbHMDgY6XconpqV1Y6Fa8ljdXxp/ybdIUBdYx+7kR3AwgS2rPhtxepd3yAhahxvkQH2em0KHxuA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Decagon\\Desktop\\C# - Dev\\Web Dev with ASP\\Sample Folder\\EC-Medicines-Store\\EC-Medicines-Store\\EC-Medicines-Store.csproj",
+  "projectFilePath": "C:\\Users\\Decagon\\source\\Professional Repo\\E-Commerce-Medicine-Store\\EC-Medicines-Store\\EC-Medicines-Store.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.5\\microsoft.aspnetcore.openapi.7.0.5.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

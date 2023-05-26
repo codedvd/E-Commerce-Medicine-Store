@@ -17,14 +17,47 @@ namespace EC_Medicines_Store.Controllers
             _configuration = configuration;
         }
 
-        [HttpOptions]
+        [HttpPost]
         [Route("registration")]
         public Response register(Users users)
         {
             Response response = new Response();
+            DAL dal = new DAL();
             SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("EMedsCS").ToString());
-
+            response = dal.register(users, connection);
             return response;
         }
+
+        [HttpPost]
+        [Route("login")]
+        public Response login(Users users)
+        {
+            DAL dal = new DAL();
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("EMedsCS").ToString());
+            Response response = dal.login(users, connection);
+            return response;
+        }
+
+        [HttpPost]
+        [Route("viewUser")]
+        public Response viewUser(Users users)
+        {
+            DAL dal = new DAL();
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("EMedsCS").ToString());
+            Response response = dal.viewUser(users, connection);
+            return response;
+        }
+
+        [HttpPost]
+        [Route("updateProfile")]
+        public Response updateProfile(Users users)
+        {
+            DAL dAL = new DAL();
+            SqlConnection connection = new SqlConnection( _configuration.GetConnectionString("EMedsCS").ToString());
+            Response response = dAL.updateProfile(users, connection);
+            return response;
+        }
+
+
     }
 }

@@ -925,11 +925,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Decagon\\Desktop\\C# - Dev\\Web Dev with ASP\\Sample Folder\\EC-Medicines-Store\\EC-Medicines-Store\\EC-Medicines-Store.csproj",
+      "projectUniqueName": "C:\\Users\\Decagon\\source\\Professional Repo\\E-Commerce-Medicine-Store\\EC-Medicines-Store\\EC-Medicines-Store.csproj",
       "projectName": "EC-Medicines-Store",
-      "projectPath": "C:\\Users\\Decagon\\Desktop\\C# - Dev\\Web Dev with ASP\\Sample Folder\\EC-Medicines-Store\\EC-Medicines-Store\\EC-Medicines-Store.csproj",
+      "projectPath": "C:\\Users\\Decagon\\source\\Professional Repo\\E-Commerce-Medicine-Store\\EC-Medicines-Store\\EC-Medicines-Store.csproj",
       "packagesPath": "C:\\Users\\Decagon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Decagon\\Desktop\\C# - Dev\\Web Dev with ASP\\Sample Folder\\EC-Medicines-Store\\EC-Medicines-Store\\obj\\",
+      "outputPath": "C:\\Users\\Decagon\\source\\Professional Repo\\E-Commerce-Medicine-Store\\EC-Medicines-Store\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
