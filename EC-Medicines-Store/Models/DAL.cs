@@ -1,5 +1,4 @@
 ﻿using System.Data.SqlClient;
-using System.Data.SqlClient;
 using System.Data;
 
 namespace EC_Medicines_Store.Models
@@ -134,10 +133,153 @@ namespace EC_Medicines_Store.Models
                 response.StatusMessage = "Item Added Successfully";
             }else
             {
-                response.StatusCode = 200;
+                response.StatusCode = 100;
                 response.StatusMessage = "Item could not be Added ";
             }
             return response;
+        }
+
+        public Response placeOrder(Users users, SqlConnection connection)
+        {
+            Response response = new Response();
+            SqlCommand cmd = new SqlCommand("sp_PlaceOrder", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ID", users.ID);
+            connection.Open();
+            int i = cmd.ExecuteNonQuery();
+            connection.Close();
+            if (i > 0)
+            {
+                response.StatusCode = 200;
+                response.StatusMessage = "Order has been placed succesfully";
+            }
+            else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "Order could not be placed";
+            }
+            return response;
+        }
+
+        public Response orderList(Users users, SqlConnection connection) 
+        {
+            Response response = new Response();
+            List<Orders> listOrder = new List<Orders>();
+
+            SqlDataAdapter da = new SqlDataAdapter("sp_Orderlist", connection); 
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.AddWithValue("@Type", users.Type);
+            da.SelectCommand.Parameters.AddWithValue("@ID", users.ID);
+            DataTable dt =new DataTable();
+            da.Fill(dt);
+            if(dt.Rows.Count > 0)
+            {
+                for(int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Orders order = new Orders();
+                    order.ID = Convert.ToInt32(dt.Rows[i]["ID"]);
+                    order.OrderNo = Convert.ToString(dt.Rows[i]["OrderNo"])!;
+                    order.OrderTotal = Convert.ToDecimal(dt.Rows[i]["OrderTotal"]);
+                    order.OrderStatus = Convert.ToString(dt.Rows[i]["OrderStatus"])!;
+                    listOrder.Add(order);
+                }
+                if(listOrder.Count > 0)
+                {
+                    response.StatusCode = 200;
+                    response.StatusMessage = "Order details fetched";
+                    response.listOrders = listOrder;
+                }else
+                {
+                    response.StatusCode = 100;
+                    response.StatusMessage = "Order details are not available";
+                    response.listOrders = null!;
+                }
+            }else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "Order details not available";
+                response.listOrders = null!;
+            }
+            return response;
+
+        }
+
+        public Response addUpdateMedicine(Medicines medicines, SqlConnection connection)
+        {
+            Response response = new Response();
+            SqlCommand cmd = new SqlCommand("sp_AddUpdateMedicine", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Name", medicines.Name);
+            cmd.Parameters.AddWithValue("@Manufacturer", medicines.Manufacturer);
+            cmd.Parameters.AddWithValue("@UnitPrice", medicines.UnitPrice);
+            cmd.Parameters.AddWithValue("@Discount", medicines.Discount);
+            cmd.Parameters.AddWithValue("@Quantity", medicines.Quantity);
+            cmd.Parameters.AddWithValue("@ExpDate", medicines.ExpDate);
+            cmd.Parameters.AddWithValue("@ImageUrl", medicines.ImageUrl);
+            cmd.Parameters.AddWithValue("@Status", medicines.Status);
+            cmd.Parameters.AddWithValue("@Type", medicines.Type);
+
+            connection.Open();
+            int i = cmd.ExecuteNonQuery();
+            connection.Close();
+
+            if(i > 0)
+            {
+                response.StatusCode = 200;
+                response.StatusMessage = "Medicine inserted successfully";
+            }else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "Medicine did not save. Try again";
+            }
+            return response;
+        }
+
+        public Response userList(SqlConnection connection)
+        {
+            Response response = new Response();
+            List<Users> listUsers = new List<Users>();
+
+            SqlDataAdapter da = new SqlDataAdapter("sp_Userlist", connection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Users user = new Users();
+                    user.ID = Convert.ToInt32(dt.Rows[i]["ID"]);
+                    user.FirstName = Convert.ToString(dt.Rows[i]["FirstName"])!;
+                    user.LastName = Convert.ToString(dt.Rows[i]["LastName"]);
+                    user.Password = Convert.ToString(dt.Rows[i]["Password"])!;
+                    user.Email = Convert.ToString(dt.Rows[i]["Email"])!;
+                    user.Fund = Convert.ToDecimal(dt.Rows[i]["Fund"])!;
+                    user.Status = Convert.ToInt32(dt.Rows[i]["Status"])!;
+                    user.CreatedOn = Convert.ToDateTime(dt.Rows[i]["CreatedOn"])!;
+                    listUsers.Add(user);
+                }
+                if (listUsers.Count > 0)
+                {
+                    response.StatusCode = 200;
+                    response.StatusMessage = "User details fetched";
+                    response.listUsers = listUsers;
+                }
+                else
+                {
+                    response.StatusCode = 100;
+                    response.StatusMessage = "User details are not available";
+                    response.listUsers = null!;
+                }
+            }
+            else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "User details not available";
+                response.listOrders = null!;
+            }
+            return response;
+
         }
     }
 }

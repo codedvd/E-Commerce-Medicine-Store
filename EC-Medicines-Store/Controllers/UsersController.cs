@@ -23,7 +23,7 @@ namespace EC_Medicines_Store.Controllers
         {
             Response response = new Response();
             DAL dal = new DAL();
-            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("EMedsCS").ToString());
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("EMedsCS")!.ToString());
             response = dal.register(users, connection);
             return response;
         }
@@ -33,7 +33,7 @@ namespace EC_Medicines_Store.Controllers
         public Response login(Users users)
         {
             DAL dal = new DAL();
-            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("EMedsCS").ToString());
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("EMedsCS")!.ToString());
             Response response = dal.login(users, connection);
             return response;
         }
@@ -43,7 +43,7 @@ namespace EC_Medicines_Store.Controllers
         public Response viewUser(Users users)
         {
             DAL dal = new DAL();
-            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("EMedsCS").ToString());
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("EMedsCS")!.ToString());
             Response response = dal.viewUser(users, connection);
             return response;
         }
@@ -53,7 +53,7 @@ namespace EC_Medicines_Store.Controllers
         public Response updateProfile(Users users)
         {
             DAL dAL = new DAL();
-            SqlConnection connection = new SqlConnection( _configuration.GetConnectionString("EMedsCS").ToString());
+            SqlConnection connection = new SqlConnection( _configuration.GetConnectionString("EMedsCS")!.ToString());
             Response response = dAL.updateProfile(users, connection);
             return response;
         }
